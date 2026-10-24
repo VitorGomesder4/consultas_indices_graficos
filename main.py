@@ -1,4 +1,5 @@
 import pandas as pd
+from insert_exportacoes import inserir_exportacoes
 from db import db
 
 print("Lendo exportações...")
@@ -21,6 +22,4 @@ for coluna in tabela_exportacoes:
 
 tabela_5_produtos_ig = tabela_exportacoes[tabela_exportacoes["CO_NCM"].str.startswith(tuple(os_5_produtos_escolhidos_co_ncm.values()))].copy()
 
-
-
-print(tabela_5_produtos_ig.iloc[0])
+inserir_exportacoes(tabela_5_produtos_ig)
