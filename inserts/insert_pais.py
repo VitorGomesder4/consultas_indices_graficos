@@ -6,7 +6,7 @@ Index(['CO_PAIS', 'CO_PAIS_ISON3', 'CO_PAIS_ISOA3', 'NO_PAIS', 'NO_PAIS_ING',
       dtype='str')
 """
 
-def inserir_ncm_unidade_estatistica(tabela):
+def inserir_pais(tabela):
     cursor = db.cursor()
     
     cursor.execute("""
