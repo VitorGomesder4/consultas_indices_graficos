@@ -218,3 +218,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+bases_csv/indices_geograficos_reconhecidos.pdf
