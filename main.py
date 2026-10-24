@@ -1,4 +1,5 @@
 import pandas as pd
+from db import db
 
 print("Lendo exportações...")
 tabela_exportacoes = pd.read_csv("bases_csv/EXP_2026.csv", sep=";")
