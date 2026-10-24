@@ -31,7 +31,7 @@ def inserir_pais_bloco(tabela):
             cursor.execute(
                 """
                 INSERT INTO pais_bloco (
-                    co_pais, co_pais_ison3, co_pais_isoa3, no_pais, no_pais_ing, no_pais_esp
+                    co_pais, co_bloco, no_bloco, no_bloco_ing, no_bloco_esp
                 )
                 VALUES (%s, %s, %s, %s, %s)
                 """,
