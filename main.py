@@ -1,5 +1,5 @@
 import pandas as pd
-from insert_exportacoes import inserir_exportacoes
+from inserts.insert_exportacoes import inserir_exportacoes
 from db import db
 
 print("Lendo exportações...")
