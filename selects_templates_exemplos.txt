@@ -1,0 +1,65 @@
+---
+--- CREATES
+---
+CREATE TABLE exportacoes (
+  id_exportacao INT(11) NOT NULL AUTO_INCREMENT,
+  CO_ANO VARCHAR(15) NULL,
+  CO_MES VARCHAR(15) NULL,
+  CO_NCM VARCHAR(15) NULL,
+  CO_UNID VARCHAR(15) NULL,
+  CO_PAIS VARCHAR(15) NULL,
+  SG_UF_NCM CHAR(2) NULL,
+  CO_VIA VARCHAR(15) NULL,
+  CO_URF VARCHAR(15) NULL,
+  QT_ESTAT VARCHAR(15) NULL,
+  KG_LIQUIDO VARCHAR(15) NULL,
+  VL_FOB VARCHAR(15) NULL,
+  PRIMARY KEY (id_exportacao)
+);
+
+CREATE TABLE ncm_unidade (
+  co_ncm VARCHAR(8) NOT NULL,
+  no_ncm_por VARCHAR(1000) NULL,
+  co_unid VARCHAR(2) NULL,
+  no_unid VARCHAR(30) NULL,
+  sg_unid VARCHAR(5) NULL,
+  PRIMARY KEY (co_ncm)
+);
+
+CREATE TABLE pais (
+  co_pais VARCHAR(3) NOT NULL,
+  co_pais_ison3 VARCHAR(3) NULL,
+  co_pais_isoa3 VARCHAR(3) NULL,
+  no_pais VARCHAR(50) NULL,
+  no_pais_ing VARCHAR(80) NULL,
+  no_pais_esp VARCHAR(80) NULL,
+  PRIMARY KEY (co_pais)
+);
+
+CREATE TABLE pais_bloco (
+  co_pais VARCHAR(3) NOT NULL,
+  co_bloco VARCHAR(3) NOT NULL,
+  no_bloco VARCHAR(50) NULL,
+  no_bloco_ing VARCHAR(50) NULL,
+  no_bloco_esp VARCHAR(50) NULL,
+  PRIMARY KEY (co_pais, co_bloco)
+);
+
+---
+---
+---
+
+--- SELECTS EXEMPLO
+
+SELECT
+  nu.no_ncm_por,
+  pa.no_pais,
+  pb.no_bloco,
+  ex.QT_ESTAT,
+  ex.KG_LIQUIDO,
+  ex.VL_FOB
+FROM exportacoes AS ex
+JOIN ncm_unidade AS nu ON nu.co_ncm  = ex.CO_NCM
+JOIN pais        AS pa ON pa.co_pais = ex.CO_PAIS
+JOIN pais_bloco  AS pb ON pb.co_pais = pa.co_pais
+ORDER BY nu.no_ncm_por;
