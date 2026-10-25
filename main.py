@@ -8,17 +8,17 @@ tabela_exportacoes = pd.read_csv("bases_csv/EXP_2026.csv", sep=";", dtype=str)
 
 
 os_5_produtos_escolhidos_co_ncm = {
-    "vinhos": "2204",
-    "queijos": "0406",
-    "carne": "0200",
-    "bebidas espirituosas": "2208",
-    "cervejas": "2203"
-    }
+    "vinhos": ["2204"],
+    "queijos": ["0406"],
+    "carnes e preparacoes": ["0210", "1601", "1602"],
+    "bebidas espirituosas": ["2208"],
+    "azeite": ["1509", "1510"],
+}
 
 
-tabela_5_produtos_ig = tabela_exportacoes[tabela_exportacoes["CO_NCM"].str.startswith(tuple(os_5_produtos_escolhidos_co_ncm.values()))].copy()
+prefixos = tuple(p for lista in os_5_produtos_escolhidos_co_ncm.values() for p in lista)
 
-inserir_exportacoes(tabela_5_produtos_ig)
+tabela_5_produtos_ig = tabela_exportacoes[tabela_exportacoes["CO_NCM"].str.startswith(prefixos)].copy()
 
 
 
