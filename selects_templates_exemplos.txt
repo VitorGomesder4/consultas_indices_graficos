@@ -63,3 +63,29 @@ JOIN ncm_unidade AS nu ON nu.co_ncm  = ex.CO_NCM
 JOIN pais        AS pa ON pa.co_pais = ex.CO_PAIS
 JOIN pais_bloco  AS pb ON pb.co_pais = pa.co_pais
 ORDER BY nu.no_ncm_por;
+
+SELECT
+    pa.no_pais AS pais,
+    pb.no_bloco AS pais_bloco,
+    nu.co_ncm AS codigo_ncm,
+    nu.no_ncm_por AS produto,
+    SUM(CAST(ex.KG_LIQUIDO AS DECIMAL(15, 2))) AS kg_exportados,
+    SUM(CAST(ex.QT_ESTAT AS DECIMAL(15, 2))) AS quantidade_exportada,
+    SUM(CAST(ex.VL_FOB AS DECIMAL(15, 2))) AS valor_fob_total
+FROM exportacoes AS ex
+JOIN ncm_unidade AS nu
+    ON nu.co_ncm = ex.CO_NCM
+JOIN pais AS pa
+    ON pa.co_pais = ex.CO_PAIS
+JOIN pais_bloco AS pb
+    ON pb.co_pais = pa.co_pais
+GROUP BY
+    pa.co_pais,
+    pa.no_pais,
+    pb.co_bloco,
+    pb.no_bloco,
+    nu.co_ncm,
+    nu.no_ncm_por
+ORDER BY
+    pa.no_pais,
+    kg_exportados DESC;
