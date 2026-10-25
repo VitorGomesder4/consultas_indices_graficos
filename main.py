@@ -4,7 +4,7 @@ from db import db
 
 # =========Tabela de exportacoes e seu tratamento===============
 print("Lendo exportações...")
-tabela_exportacoes = pd.read_csv("bases_csv/EXP_2026.csv", sep=";")
+tabela_exportacoes = pd.read_csv("bases_csv/EXP_2026.csv", sep=";", dtype=str)
 
 
 os_5_produtos_escolhidos_co_ncm = {
@@ -15,11 +15,6 @@ os_5_produtos_escolhidos_co_ncm = {
     "cervejas": "2203"
     }
 
-
-for coluna in tabela_exportacoes:
-    tabela_exportacoes[coluna] = tabela_exportacoes[coluna].astype(str)
-
-    #print(coluna, type(tabela_exportacoes[coluna].iloc[0]))
 
 tabela_5_produtos_ig = tabela_exportacoes[tabela_exportacoes["CO_NCM"].str.startswith(tuple(os_5_produtos_escolhidos_co_ncm.values()))].copy()
 
