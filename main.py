@@ -18,7 +18,11 @@ os_5_produtos_escolhidos_co_ncm = {
 
 prefixos = tuple(p for lista in os_5_produtos_escolhidos_co_ncm.values() for p in lista)
 
-tabela_5_produtos_ig = tabela_exportacoes[tabela_exportacoes["CO_NCM"].str.startswith(prefixos)].copy()
+tabela_5_produtos_ig = tabela_exportacoes[
+    tabela_exportacoes["CO_NCM"].str.startswith(prefixos)
+].copy()
+
+inserir_exportacoes(tabela_5_produtos_ig)
 
 
 
