@@ -82,10 +82,10 @@ def gerar_query_dinamica(agrupamento_geografico=None, agrupar_ncm=False, somar_e
             if limite < 1:
                 raise ValueError
 
+            sql += f"\nLIMIT {limite} OFFSET {offset}"
+
         except (ValueError, TypeError):
             limite = 20
-
-    sql += f"\nLIMIT {limite} OFFSET {offset}"
 
     return sql
 
