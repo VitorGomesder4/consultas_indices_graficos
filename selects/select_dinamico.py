@@ -42,14 +42,14 @@ def gerar_query_dinamica(agrupamento_geografico=None, agrupar_ncm=False, somar_e
         groups_by.append("COALESCE(pb.no_bloco, 'Sem bloco')")  # MUDOU: mesmo COALESCE do select
 
 
+    selects.append("nu.co_ncm")
+    selects.append("nu.no_ncm_por")
+    
+    joins.append("""
+        JOIN ncm_unidade as nu
+        ON nu.co_ncm = ex.CO_NCM
+    """)
     if agrupar_ncm:
-        selects.append("nu.co_ncm")
-        selects.append("nu.no_ncm_por")
-
-        joins.append("""
-            JOIN ncm_unidade as nu
-            ON nu.co_ncm = ex.CO_NCM
-        """)
         groups_by.append("nu.co_ncm")
         groups_by.append("nu.no_ncm_por")
 
