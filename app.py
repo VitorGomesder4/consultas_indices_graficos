@@ -67,6 +67,15 @@ if secao == "Exportações Por Continente":
     df = executar_reads_query(x)
 
     with st.container(border=True):
+
+        resetar_tabela = st.button(label="Resetar Tabela para padrão")
+
+        if resetar_tabela:
+            for i in ("indice_por_pag", "agrupamento_geografico", "agrupamento_ncm"):
+                st.session_state.pop(i, None)
+            st.session_state.pagina = 1
+            st.rerun()
+
         #Exibindo Exportações
         st.write("Exportações:")
         st.table(df)
@@ -133,10 +142,18 @@ if secao == "Exportações Por Bloco Econômico":
 
     y = gerar_query_dinamica(agrupamento_geografico=agrupamento_geografico, agrupar_ncm=agrupamento_ncm , somar_exportacao_val=True, tipo_bloco="economico", limite=limite).strip()
 
-
     df2 = executar_reads_query(y)
 
     with st.container(border=True):
+
+        resetar_tabela = st.button(label="Resetar Tabela para padrão")
+        
+        if resetar_tabela:
+            for i in ("indice_por_pag", "agrupamento_geografico", "agrupamento_ncm"):
+                st.session_state.pop(i, None)
+            st.session_state.pagina = 1
+            st.rerun()
+
         #EXIBINDO exportações por bloco_economico
         st.write("Exportações por blocos economico:")
         st.table(df2)
