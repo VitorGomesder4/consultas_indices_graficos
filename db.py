@@ -1,3 +1,5 @@
+#Arquivo criador do banco e conexão para evitar multi-import
+
 import mysql.connector
 import os
 from dotenv import load_dotenv
