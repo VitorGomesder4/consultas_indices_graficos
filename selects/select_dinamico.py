@@ -22,24 +22,20 @@ def gerar_query_dinamica(agrupamento_geografico=None, agrupar_ncm=False, somar_e
 
 
     elif agrupamento_geografico == "pais_bloco":
-        # MUDOU: COALESCE mostra "Sem bloco" para países sem bloco (antes sumiam do resultado)
-        selects.append("COALESCE(pb.no_bloco, 'Sem bloco') AS bloco")
+        selects.append("pb.no_bloco AS bloco")
 
-        # NOVO: um tipo de bloco por vez (continente OU econômico); senão o mesmo país
-        # entra em 2 blocos e o valor é somado duas vezes
         lista_blocos = ", ".join(f"'{b}'" for b in BLOCOS_ECONOMICOS)
         operador = "NOT IN" if tipo_bloco == "continente" else "IN"
 
-        # MUDOU: LEFT JOIN no pais_bloco (antes JOIN) para não perder países sem bloco,
-        # e o filtro de tipo fica no ON (no WHERE o LEFT JOIN voltaria a descartar linhas)
         joins.append(f"""
-            JOIN pais as pa
-            ON pa.co_pais = ex.CO_PAIS
-            LEFT JOIN pais_bloco as pb
-            ON pb.co_pais = pa.co_pais
-            AND pb.no_bloco {operador} ({lista_blocos})
+            JOIN pais AS pa
+                ON pa.co_pais = ex.CO_PAIS
+            JOIN pais_bloco AS pb
+                ON pb.co_pais = pa.co_pais
+                AND pb.no_bloco {operador} ({lista_blocos})
         """)
-        groups_by.append("COALESCE(pb.no_bloco, 'Sem bloco')")  # MUDOU: mesmo COALESCE do select
+
+        groups_by.append("pb.no_bloco")
 
 
     selects.append("nu.co_ncm")
