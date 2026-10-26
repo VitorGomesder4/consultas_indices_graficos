@@ -1,4 +1,3 @@
-
 import pandas as pd
 import streamlit as st
 from selects.select_dinamico import gerar_query_dinamica
@@ -46,6 +45,8 @@ if secao == "Exportações Por Continente":
             st.session_state.agrupamento_geografico = agrupamento_geografico
             st.session_state.agrupamento_ncm = agrupamento_ncm
 
+            st.session_state.usar_query_dinamica = True
+
 
         limite = st.session_state.get("indice_por_pag", 20)
 
@@ -55,14 +56,16 @@ if secao == "Exportações Por Continente":
 
         offset = (st.session_state.get("pagina", 1) - 1) * limite
 
-
-    x = gerar_query_dinamica(
-        agrupamento_geografico=agrupamento_geografico, 
-        agrupar_ncm=agrupamento_ncm, 
-        somar_exportacao_val=True, 
-        tipo_bloco="continente", 
-        limite=limite, 
-        offset=offset).strip()
+    if st.session_state.get("usar_query_dinamica", False):
+        x = gerar_query_dinamica(
+            agrupamento_geografico=agrupamento_geografico, 
+            agrupar_ncm=agrupamento_ncm, 
+            somar_exportacao_val=True, 
+            tipo_bloco="continente", 
+            limite=limite, 
+            offset=offset).strip()
+    else:
+        x = gerar_query_padrao(limite=limite, offset=offset)
 
     df = executar_reads_query(x)
 
@@ -71,7 +74,7 @@ if secao == "Exportações Por Continente":
         resetar_tabela = st.button(label="Resetar Tabela para padrão")
 
         if resetar_tabela:
-            for i in ("indice_por_pag", "agrupamento_geografico", "agrupamento_ncm"):
+            for i in ("indice_por_pag", "agrupamento_geografico", "agrupamento_ncm", "usar_query_dinamica"):
                 st.session_state.pop(i, None)
             st.session_state.pagina = 1
             st.rerun()
@@ -99,6 +102,11 @@ if secao == "Exportações Por Continente":
             if st.button("Próxima"):
                 st.session_state.pagina += 1
                 st.rerun()
+
+
+
+
+
 
 
 #Seção simples para dados por bloco economico
@@ -129,6 +137,8 @@ if secao == "Exportações Por Bloco Econômico":
                 st.session_state.agrupamento_geografico = agrupamento_geografico
         
                 st.session_state.agrupamento_ncm = agrupamento_ncm
+                st.session_state.usar_query_dinamica = True
+
         
         
             limite = st.session_state.get("indice_por_pag", 20)
@@ -139,8 +149,10 @@ if secao == "Exportações Por Bloco Econômico":
         
             offset = (st.session_state.get("pagina", 1) - 1) * limite
 
-
-    y = gerar_query_dinamica(agrupamento_geografico=agrupamento_geografico, agrupar_ncm=agrupamento_ncm , somar_exportacao_val=True, tipo_bloco="economico", limite=limite).strip()
+    if st.session_state.get("usar_query_dinamica", False):
+        y = gerar_query_dinamica(agrupamento_geografico=agrupamento_geografico, agrupar_ncm=agrupamento_ncm , somar_exportacao_val=True, tipo_bloco="economico", limite=limite).strip()
+    else:
+        y = gerar_query_padrao(limite=limite, offset=offset)
 
     df2 = executar_reads_query(y)
 
@@ -149,7 +161,7 @@ if secao == "Exportações Por Bloco Econômico":
         resetar_tabela = st.button(label="Resetar Tabela para padrão")
         
         if resetar_tabela:
-            for i in ("indice_por_pag", "agrupamento_geografico", "agrupamento_ncm"):
+            for i in ("indice_por_pag", "agrupamento_geografico", "agrupamento_ncm", "usar_query_dinamica"):
                 st.session_state.pop(i, None)
             st.session_state.pagina = 1
             st.rerun()
