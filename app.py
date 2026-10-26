@@ -25,14 +25,14 @@ if secao == "Exportações Por Continente":
     if "pagina" not in st.session_state:
         st.session_state.pagina = 1
 
-    with st.expander("Parâmetros de exportações", expanded=True):
+    with st.expander("Parâmetros de exportações", expanded=False):
         #Formulario de parametros para realizar consulta sem precisar recarregar codigo toda vez
         with st.form("Parametros_exportações"):
             indice_por_pag = st.number_input(label="Indices por pagina (max 50)", min_value=1 , max_value=50, value=20)
 
-            agrupamento_geografico = st.radio(label="Agrupamento Geografico:", options=["pais", "pais_bloco"])
+            agrupamento_geografico = st.radio(label="Agrupamento Geografico:", options=["pais", "pais_bloco"], index=None)
 
-            agrupamento_ncm = st.radio(label="Agrupar NCM's:", options=["Sim", "Não"])
+            agrupamento_ncm = st.radio(label="Agrupar NCM's:", options=["Sim", "Não"], index=None)
 
             aplicar = st.form_submit_button("Aplicar")
 
@@ -66,30 +66,30 @@ if secao == "Exportações Por Continente":
 
     df = executar_reads_query(x)
 
+    with st.container(border=True):
+        #Exibindo Exportações
+        st.write("Exportações:")
+        st.table(df)
 
-    #Exibindo Exportações
-    st.write("Exportações:")
-    st.table(df)
 
+        #Botões para mudar pagina atual
+        col1, col2, col3 = st.columns([1, 2, 3])
 
-    #Botões para mudar pagina atual
-    col1, col2, col3 = st.columns([1, 2, 3])
+        with col1:
+            if st.button(
+                label="Anterior",
+                disabled=st.session_state.pagina == 1
+            ):
+                st.session_state.pagina -= 1
+                st.rerun()
 
-    with col1:
-        if st.button(
-            label="Anterior",
-            disabled=st.session_state.pagina == 1
-        ):
-            st.session_state.pagina -= 1
-            st.rerun()
+        with col2:
+            st.write(f"Página {st.session_state.pagina}")
 
-    with col2:
-        st.write(f"Página {st.session_state.pagina}")
-
-    with col3:
-        if st.button("Próxima"):
-            st.session_state.pagina += 1
-            st.rerun()
+        with col3:
+            if st.button("Próxima"):
+                st.session_state.pagina += 1
+                st.rerun()
 
 
 #Seção simples para dados por bloco economico
@@ -100,14 +100,14 @@ if secao == "Exportações Por Bloco Econômico":
     if "pagina" not in st.session_state:
             st.session_state.pagina = 1
     
-    with st.expander("Parâmetros de exportações", expanded=True):
+    with st.expander("Parâmetros de exportações", expanded=False):
         #Formulario de parametros para realizar consulta sem precisar recarregar codigo toda vez
         with st.form("Parametros_exportações"):
             indice_por_pag = st.number_input(label="Indices por pagina (max 50)", min_value=1 , max_value=50, value=20)
         
-            agrupamento_geografico = st.radio(label="Agrupamento Geografico:", options=["pais", "pais_bloco"])
+            agrupamento_geografico = st.radio(label="Agrupamento Geografico:", options=["pais", "pais_bloco"], index=None)
         
-            agrupamento_ncm = st.radio(label="Agrupar NCM's:", options=["Sim", "Não"])
+            agrupamento_ncm = st.radio(label="Agrupar NCM's:", options=["Sim", "Não"], index=None)
         
             aplicar = st.form_submit_button("Aplicar")
         
@@ -136,25 +136,26 @@ if secao == "Exportações Por Bloco Econômico":
 
     df2 = executar_reads_query(y)
 
+    with st.container(border=True):
+        #EXIBINDO exportações por bloco_economico
+        st.write("Exportações por blocos economico:")
+        st.table(df2)
 
-    st.write("Exportações por blocos economico:")
-    st.table(df2)
-
-    #Botões para mudar pagina atual
-    col1, col2, col3 = st.columns([1, 2, 3])
-    
-    with col1:
-        if st.button(
-            label="Anterior",
-            disabled=st.session_state.pagina == 1
-        ):
-            st.session_state.pagina -= 1
-            st.rerun()
-    
-    with col2:
-        st.write(f"Página {st.session_state.pagina}")
-    
-    with col3:
-        if st.button("Próxima"):
-            st.session_state.pagina += 1
-            st.rerun()
+        #Botões para mudar pagina atual
+        col1, col2, col3 = st.columns([1, 2, 3])
+        
+        with col1:
+            if st.button(
+                label="Anterior",
+                disabled=st.session_state.pagina == 1
+            ):
+                st.session_state.pagina -= 1
+                st.rerun()
+        
+        with col2:
+            st.write(f"Página {st.session_state.pagina}")
+        
+        with col3:
+            if st.button("Próxima"):
+                st.session_state.pagina += 1
+                st.rerun()
