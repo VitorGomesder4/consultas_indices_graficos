@@ -16,14 +16,16 @@ secao = st.sidebar.radio(
     ["Exportações Por Continente", "Exportações Por Bloco Econômico"]
 )
 
+#Se a seção for exportação por continente vamos exibir tabela para tal
 if secao == "Exportações Por Continente":
     
 
     st.title("Exportação por Continente")
 
-
+    #Criando atributo de paginação
     if "pagina" not in st.session_state:
         st.session_state.pagina = 1
+
 
     with st.expander("Parâmetros de exportações", expanded=False):
         #Formulario de parametros para realizar consulta sem precisar recarregar codigo toda vez
@@ -45,7 +47,7 @@ if secao == "Exportações Por Continente":
             st.session_state.agrupamento_geografico = agrupamento_geografico
             st.session_state.agrupamento_ncm = agrupamento_ncm
 
-            st.session_state.usar_query_dinamica = True
+            st.session_state.usar_query_dinamica = True #atributo que define se visualiza exportacoes individuais padroes ou agrupadas
 
 
         limite = st.session_state.get("indice_por_pag", 20)
@@ -69,8 +71,11 @@ if secao == "Exportações Por Continente":
 
     df = executar_reads_query(x)
 
+
+    #Container referente a seção da tabela exibida
     with st.container(border=True):
 
+        #Botao para resetar estado de exibição
         resetar_tabela = st.button(label="Resetar Tabela para padrão")
 
         if resetar_tabela:
@@ -116,6 +121,7 @@ if secao == "Exportações Por Bloco Econômico":
 
     if "pagina" not in st.session_state:
             st.session_state.pagina = 1
+
     
     with st.expander("Parâmetros de exportações", expanded=False):
         #Formulario de parametros para realizar consulta sem precisar recarregar codigo toda vez
@@ -137,7 +143,7 @@ if secao == "Exportações Por Bloco Econômico":
                 st.session_state.agrupamento_geografico = agrupamento_geografico
         
                 st.session_state.agrupamento_ncm = agrupamento_ncm
-                st.session_state.usar_query_dinamica = True
+                st.session_state.usar_query_dinamica = True #atributo que define se visualiza exportacoes individuais padroes ou agrupadas
 
         
         
@@ -149,15 +155,20 @@ if secao == "Exportações Por Bloco Econômico":
         
             offset = (st.session_state.get("pagina", 1) - 1) * limite
 
+
     if st.session_state.get("usar_query_dinamica", False):
         y = gerar_query_dinamica(agrupamento_geografico=agrupamento_geografico, agrupar_ncm=agrupamento_ncm , somar_exportacao_val=True, tipo_bloco="economico", limite=limite).strip()
     else:
         y = gerar_query_padrao(limite=limite, offset=offset)
 
+
     df2 = executar_reads_query(y)
 
+
+    #Container referente a seção da tabela exibida
     with st.container(border=True):
 
+        #Botao para resetar estado de exibição
         resetar_tabela = st.button(label="Resetar Tabela para padrão")
         
         if resetar_tabela:
