@@ -58,6 +58,13 @@ def gerar_query_dinamica(agrupamento_geografico=None, agrupar_ncm=False, somar_e
         if agrupar_ncm:
             selects.append("SUM(CAST(ex.QT_ESTAT AS DECIMAL(15, 2))) AS Quantidade_Exportada")
 
+    else:
+        selects.extend([
+            "ex.KG_LIQUIDO AS Kg_liquido",
+            "ex.VL_FOB AS Valor_Fob",
+            "ex.QT_ESTAT AS Quantidade_Exportada"
+        ])
+
     sql = f"""
         SELECT {", ".join(selects)}
         FROM exportacoes AS ex
