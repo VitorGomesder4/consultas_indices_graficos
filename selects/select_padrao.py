@@ -1,3 +1,4 @@
+#Query que sera tabela padrao de exibição ao entrar na pagina
 def gerar_query_padrao(limite=20, offset=0):
     query = f"""
         SELECT
