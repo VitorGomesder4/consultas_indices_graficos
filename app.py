@@ -2,6 +2,7 @@
 import pandas as pd
 import streamlit as st
 from selects.select_dinamico import gerar_query_dinamica
+from selects.select_padrao import gerar_query_padrao
 from db import db
 
 #CACHE para consulta sql
@@ -43,7 +44,6 @@ if secao == "Exportações Por Continente":
             st.session_state.pagina = 1 #Reseta o valor para 1 se o usuario aplicar
 
             st.session_state.agrupamento_geografico = agrupamento_geografico
-
             st.session_state.agrupamento_ncm = agrupamento_ncm
 
 
