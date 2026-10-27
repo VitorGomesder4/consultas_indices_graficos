@@ -9,10 +9,10 @@ tabela_exportacoes = pd.read_csv("bases_csv/EXP_2026.csv", sep=";", dtype=str)
 
 os_5_produtos_escolhidos_co_ncm = {
     "vinhos": ["2204"],
-    "queijos": ["0406"],
-    "carnes e preparacoes": ["0210", "1601", "1602"],
-    "bebidas espirituosas": ["2208"],
-    "azeite": ["1509", "1510"],
+    "cervejas": ["22030000"],
+    "carne_bovina": ["0201"],
+    "café": ["0901"],
+    "bebidas_espirituosas": ["2208"]
 }
 
 
