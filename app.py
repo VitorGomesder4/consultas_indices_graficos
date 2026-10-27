@@ -2,18 +2,20 @@ import pandas as pd
 import streamlit as st
 from selects.select_dinamico import gerar_query_dinamica
 from selects.select_padrao import gerar_query_padrao
+from selects.select_descricao_ncm import gerar_descricao_ncm
+from selects.select_mapa_mundo import gerar_mapa_mundo
 from db import db
 
 #CACHE para consulta sql
 @st.cache_data(ttl=300)
-def executar_reads_query(query):
-    return pd.read_sql(query, db, dtype=str)
+def executar_reads_query(query, parametros=None):
+    return pd.read_sql(query, db, params=parametros, dtype=str)
 
 
 #Abas da pagina
 secao = st.sidebar.radio(
     "Navegação",
-    ["Exportações Por Continente", "Exportações Por Bloco Econômico"]
+    ["Exportações Por Continente", "Exportações Por Bloco Econômico", "Gráficos"]
 )
 
 #Se a seção for exportação por continente vamos exibir tabela para tal
@@ -199,3 +201,30 @@ if secao == "Exportações Por Bloco Econômico":
             if st.button("Próxima"):
                 st.session_state.pagina += 1
                 st.rerun()
+
+
+
+# ABA de visualização de graficos de visualização
+if secao == "Gráficos":
+    st.title("Gráficos")
+
+
+    # Geração de tabela para descrição dos ncm que o usuario ira escolher
+    query = gerar_descricao_ncm()
+    df_para_descricao_ncm = executar_reads_query(query)
+
+    st.text("Descrição dos Produtos disponíveis: ")
+    st.dataframe(df_para_descricao_ncm)
+
+
+    #Geração de tabela para exibir grafico de mapa do mundo
+
+
+    st.text("Mapa exportações: ")
+
+    produto = st.selectbox(label="Produto", options=df_para_descricao_ncm["CO_NCM"].sort_values().tolist())
+
+    query, parametros = gerar_mapa_mundo(produto)
+    df_para_mapa_mundo = executar_reads_query(query, parametros)
+
+    st.dataframe(df_para_mapa_mundo)
