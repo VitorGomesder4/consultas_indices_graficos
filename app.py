@@ -5,6 +5,7 @@ from selects.select_padrao import gerar_query_padrao
 from selects.select_descricao_ncm import gerar_descricao_ncm
 from selects.select_mapa_mundo import gerar_mapa_mundo
 from db import db
+import plotly.express as px
 
 #CACHE para consulta sql
 @st.cache_data(ttl=300)
@@ -227,4 +228,20 @@ if secao == "Gráficos":
     query, parametros = gerar_mapa_mundo(produto)
     df_para_mapa_mundo = executar_reads_query(query, parametros)
 
-    st.dataframe(df_para_mapa_mundo)
+    descricao_produto = df_para_descricao_ncm.loc[
+        df_para_descricao_ncm["CO_NCM"] == produto,
+        "no_ncm_por"
+    ].iloc[0]
+
+    grafico_mapa_mundo = px.choropleth(
+        data_frame=df_para_mapa_mundo,
+        locations="pais",
+        locationmode="country names",
+        color="total_quantidade",
+        hover_name="pais",
+        hover_data=["total_fob", "total_kg"],
+        projection="equirectangular",
+        title=f"Exportações de {descricao_produto}"
+        )
+
+    st.plotly_chart(grafico_mapa_mundo, use_container_width=True)
