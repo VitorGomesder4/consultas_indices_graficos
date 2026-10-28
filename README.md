@@ -10,7 +10,7 @@ Instale o Python compatível com o projeto e marque a opção **Add Python to PA
 
 **Vídeo do procedimento:**
 
-<!-- Adicione o vídeo aqui -->
+[<!-- Adicione o vídeo aqui -->](https://youtu.be/wwLU-TWkJNM)
 
 ### 2. Baixe e instale o MariaDB
 
@@ -18,7 +18,7 @@ Baixe e instale o MariaDB Server. Durante a instalação, configure a senha do u
 
 **Vídeo do procedimento:**
 
-<!-- Adicione o vídeo aqui -->
+[<!-- Adicione o vídeo aqui -->](https://youtu.be/myQ3a4l78D4)
 
 ### 3. Inicie o serviço do MariaDB
 
@@ -26,7 +26,7 @@ Inicie o serviço do MariaDB pelo aplicativo de serviços do Windows (`services.
 
 **Vídeo do procedimento:**
 
-<!-- Adicione o vídeo aqui -->
+[<!-- Adicione o vídeo aqui -->](https://youtu.be/pw8RDVaZUqU)
 
 ### 4. Baixe o projeto
 
@@ -42,7 +42,7 @@ git clone URL_DO_REPOSITORIO
 
 **Vídeo do procedimento:**
 
-<!-- Adicione o vídeo aqui -->
+[<!-- Adicione o vídeo aqui -->](https://youtu.be/bwRj_0GMwI4)
 
 ### 5. Extraia os arquivos do projeto
 
@@ -52,7 +52,7 @@ Se clonou o repositório com Git, os arquivos já estarão disponíveis na pasta
 
 **Vídeo do procedimento:**
 
-<!-- Adicione o vídeo aqui -->
+[<!-- Adicione o vídeo aqui -->](https://youtu.be/TMBYn8fcbnc)
 
 ### 6. Acesse a raiz do projeto pelo terminal
 
@@ -66,7 +66,7 @@ cd caminho\para\consultas_indices_graficos
 
 **Vídeo do procedimento:**
 
-<!-- Adicione o vídeo aqui -->
+[<!-- Adicione o vídeo aqui -->](https://youtu.be/xAiCeIn6N3Y)
 
 ### 7. Crie o banco de dados e as tabelas (DDL)
 
@@ -80,7 +80,7 @@ Execute o arquivo SQL responsável por criar o banco de dados e as tabelas.
 
 **Vídeo do procedimento:**
 
-<!-- Adicione o vídeo aqui -->
+[<!-- Adicione o vídeo aqui -->](https://youtu.be/zgxUm1mbsig)
 
 ### 8. Crie o ambiente virtual e execute o projeto
 
@@ -113,4 +113,4 @@ Acesse o endereço local apresentado no terminal para utilizar o dashboard.
 
 **Vídeo do procedimento:**
 
-<!-- Adicione o vídeo aqui -->
+[<!-- Adicione o vídeo aqui -->](https://youtu.be/9ldyRRECYrE)
