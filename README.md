@@ -1,8 +1,8 @@
 # 📦Consultas de exportações
 Repositorio de manipulação de bases de dados do MDIC
 
-
-## 🛠️Processo de como rodar o projeto
+<details>
+<summary>🛠️Como rodar o projeto (clique pra visualizar)</summary>
 
 ### 1. Baixe e instale o Python
 
@@ -12,7 +12,7 @@ Instale o Python compatível com o projeto e marque a opção **Add Python to PA
 
 [![Vídeo: baixar e instalar o Python](https://img.youtube.com/vi/wwLU-TWkJNM/hqdefault.jpg)](https://youtu.be/wwLU-TWkJNM)
 
-### 2. Baixe e instale o MariaDB
+### 2. Baixe e instale o MariaDBvk
 
 Baixe e instale o MariaDB Server. Durante a instalação, configure a senha do usuário `root`.
 
@@ -127,3 +127,4 @@ Acesse o endereço local apresentado no terminal para utilizar o dashboard.
 **Vídeo do procedimento:**
 
 [![Vídeo: criar o ambiente virtual e executar o projeto](https://img.youtube.com/vi/9ldyRRECYrE/hqdefault.jpg)](https://youtu.be/9ldyRRECYrE)
+</details>
