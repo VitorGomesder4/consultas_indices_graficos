@@ -1,5 +1,3 @@
-CREATE DATABASE IF NOT EXISTS consultas_indices_graficos;
-USE consultas_indices_graficos;
 
     -- Exportacoes brasileiras (Comex Stat / MDIC): uma linha por combinacao de
     -- ano, mes, NCM, pais de destino, UF de origem, via e URF
@@ -11,7 +9,7 @@ USE consultas_indices_graficos;
     -- CO_URF    -> liga com urf (co_urf)
     -- QT_ESTAT  = quantidade na unidade estatistica do NCM; KG_LIQUIDO sempre em kg; VL_FOB em US$
     CREATE TABLE IF NOT EXISTS exportacoes (
-    id_exportacao INT(11) NOT NULL AUTO_INCREMENT,
+    id_exportacao INTEGER NOT NULL,
     CO_ANO VARCHAR(15) NULL,
     CO_MES VARCHAR(15) NULL,
     CO_NCM VARCHAR(15) NULL,
