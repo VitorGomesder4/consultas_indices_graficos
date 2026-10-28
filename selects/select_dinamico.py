@@ -51,12 +51,12 @@ def gerar_query_dinamica(agrupamento_geografico=None, agrupar_ncm=False, somar_e
 
     if somar_exportacao_val:
         selects.extend([
-            "SUM(CAST(ex.KG_LIQUIDO AS DECIMAL(15, 2))) AS Kg_liquido",
-            "SUM(CAST(ex.VL_FOB AS DECIMAL(15, 2))) AS Valor_Fob"
+            "SUM(CAST(ex.KG_LIQUIDO AS REAL)) AS Kg_liquido",
+            "SUM(CAST(ex.VL_FOB AS REAL)) AS Valor_Fob"
         ])
         # MUDOU: QT_ESTAT só é somada por NCM (a unidade muda de NCM para NCM)
         if agrupar_ncm:
-            selects.append("SUM(CAST(ex.QT_ESTAT AS DECIMAL(15, 2))) AS Quantidade_Exportada")
+            selects.append("SUM(CAST(ex.QT_ESTAT AS REAL)) AS Quantidade_Exportada")
 
     else:
         selects.extend([
