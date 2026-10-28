@@ -155,3 +155,24 @@ Acesse o endereço local apresentado no terminal para utilizar o dashboard.
 
 [![Vídeo: criar o ambiente virtual e executar o projeto](https://img.youtube.com/vi/9ldyRRECYrE/hqdefault.jpg)](https://youtu.be/9ldyRRECYrE)
 </details>
+
+<details>
+<summary>🤖<strong>Como a IA foi usada nesse projeto</strong></summary>
+<h2> 1. Formatação e design do readme<h2>
+<h4>Usei a IA para botar o conteudo em um modelo que eu escrevi onde por exemplo na seção de como rodar o projeto so precisei substituir os links de icone e video.</h4>
+
+<h2> 2. Orientações de como fazer uma query dinamica<h2>
+<h4>Durante meu desenvolvimento estava pensando como poderia escrever um query dinamica onde sua string era gerada de acordo com os parametros do usuario. Logo usei a IA para me explicar qual o padrao do nos projetos e como eu poderia desenvolver essa query.</h4>
+
+<h2> 3. Tirar dúvidas, funções e métodos de resolução</h2>
+<h4>Foram tiradas diversas dúvidas de como usar funções como o .copy() do pandas, como eu poderia importar meus inserts com um header (inserts.py), dúvidas de sintaxe sql, como transformar colunas do dataframe pandas para uma lista com os nomes, etc.</h4>
+
+<h2> 4. Depuração do código</h2>
+<h4>Usei a IA para entender erros de lógica, consulta sql, entre outros.
+
+<h2> 5. Recomendações de otimização</h2>
+<h4>Perguntei sobre recomendações de otimização e foi recomendado usar o cache_data do streamlit onde a aplicação armazena em um cache as consultas feitas se ter que refaze-las no banco.</h4>
+
+<h2> 6. Entendimento do formato do xlsx<h2>
+<h4>Usei a IA para entender o formato do xlsx arquivo excel pois ao tentar tratar e inserir os dados vinham coisas inesperadas na base foi ai que aprendi o conceito de que a tabela possui varios indices de tipos de dados.</h4>
+</details>
