@@ -1,21 +1,32 @@
 # 📦Consultas de exportações
 Repositorio de manipulação de bases de dados do MDIC
 
+<details>
+<summary><strong> 🛠️Ferramentas/dependencias usadas</strong></summary>
 
-## 🛠️Ferramentas/dependencias usadas:
-### Mariadb
-Armazenamento das tabelas e queries
-### Python
-Linguagem mãe do projeto
-### Pandas
-Tratamento, Inserção dos dados
-### Plotly
-Criação de gráficos interativos
-### Streamlit
-Criação da interface e componentes para entrada de parametros
-### Mysql-connector
-Biblioteca para interligar o codigo python 
-com uma instancia de conexão com o MariaDB
+<h2>Mariadb</h2>
+<h3>Armazenamento das tabelas e queries</h3>
+
+<h2> Python </h2>
+<h3>Linguagem mãe do projeto</h3>
+
+<h2> Pandas </h2>
+<h3>Tratamento, Inserção dos dados</h3>
+
+<h2> Plotly </h2>
+<h3>Criação de gráficos interativos</h3>
+
+<h2> Streamlit </h2>
+<h3>Criação da interface e componentes para entrada de parametros</h3>
+
+<h2> Mysql-connector </h2>
+<h3>Biblioteca para interligar o codigo python 
+com uma instancia de conexão com o MariaDB</h3>
+
+<h2>Dotenv e OS</h2>
+<h3>Usados para carregar arquivo .env (variaveis locais) para criar conexão com o MariaDB</h3>
+
+</details>
 
 <details>
 <summary><strong>⚙️Como rodar o projeto (clique pra visualizar)</strong></summary>
