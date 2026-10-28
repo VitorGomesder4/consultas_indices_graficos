@@ -221,4 +221,7 @@ __marimo__/
 
 bases_csv/indices_geograficos_reconhecidos.pdf
 
-.env
+#Arquivos db
+
+consultas_indices_graficos
+consultas_indices_graficos.db
