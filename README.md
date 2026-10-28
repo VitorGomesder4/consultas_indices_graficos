@@ -54,7 +54,20 @@ Se clonou o repositório com Git, os arquivos já estarão disponíveis na pasta
 
 [<!-- Adicione o vídeo aqui -->](https://youtu.be/TMBYn8fcbnc)
 
-### 6. Acesse a raiz do projeto pelo terminal
+
+### 6. Renomeie o arquivo .env
+
+Após extrair o conteúdo do zip abra o diretório e renomeie
+.env.example para => .env.
+
+Depois abra o arquivo com o bloco de notas escreva sua senha na
+variável de DB_PASSWORD e salve o arquivo.
+
+**Vídeo do procedimento:**
+
+[<!-- Adicione o vídeo aqui -->](https://youtu.be/nt63cdGBhBY)
+
+### 7. Acesse a raiz do projeto pelo terminal
 
 Abra o terminal na pasta principal do projeto, onde estão localizados os arquivos de configuração, o `requirements.txt` e o arquivo principal da aplicação.
 
@@ -68,7 +81,7 @@ cd caminho\para\consultas_indices_graficos
 
 [<!-- Adicione o vídeo aqui -->](https://youtu.be/xAiCeIn6N3Y)
 
-### 7. Crie o banco de dados e as tabelas (DDL)
+### 8. Crie o banco de dados e as tabelas (DDL)
 
 Execute o arquivo SQL responsável por criar o banco de dados e as tabelas.
 
@@ -82,7 +95,7 @@ Execute o arquivo SQL responsável por criar o banco de dados e as tabelas.
 
 [<!-- Adicione o vídeo aqui -->](https://youtu.be/zgxUm1mbsig)
 
-### 8. Crie o ambiente virtual e execute o projeto
+### 9. Crie o ambiente virtual e execute o projeto
 
 Crie e ative um ambiente virtual Python:
 
