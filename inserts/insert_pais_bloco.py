@@ -33,7 +33,7 @@ def inserir_pais_bloco(tabela):
                 INSERT INTO pais_bloco (
                     co_pais, co_bloco, no_bloco, no_bloco_ing, no_bloco_esp
                 )
-                VALUES (%s, %s, %s, %s, %s)
+                VALUES (?, ?, ?, ?, ?)
                 """,
                 insert_tupla
             )

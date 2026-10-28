@@ -36,7 +36,7 @@ def inserir_exportacoes(tabela):
                     SG_UF_NCM, CO_VIA, CO_URF, QT_ESTAT,
                     KG_LIQUIDO, VL_FOB
                 )
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 insert_tupla
             )

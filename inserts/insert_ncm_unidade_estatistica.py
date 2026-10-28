@@ -30,7 +30,7 @@ def inserir_ncm_unidade_estatistica(tabela):
                 INSERT INTO ncm_unidade (
                     co_ncm, no_ncm_por, co_unid, no_unid, sg_unid
                 )
-                VALUES (%s, %s, %s, %s, %s)
+                VALUES (?, ?, ?, ?, ?)
                 """,
                 insert_tupla
             )

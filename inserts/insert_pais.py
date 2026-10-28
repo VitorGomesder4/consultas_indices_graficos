@@ -35,7 +35,7 @@ def inserir_pais(tabela):
                 INSERT INTO pais (
                     co_pais, co_pais_ison3, co_pais_isoa3, no_pais, no_pais_ing, no_pais_esp
                 )
-                VALUES (%s, %s, %s, %s, %s, %s)
+                VALUES (?, ?, ?, ?, ?, ?)
                 """,
                 insert_tupla
             )
