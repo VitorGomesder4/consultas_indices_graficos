@@ -1,8 +1,24 @@
 # 📦Consultas de exportações
 Repositorio de manipulação de bases de dados do MDIC
 
+
+## 🛠️Ferramentas/dependencias usadas:
+### Mariadb
+Armazenamento das tabelas e queries
+### Python
+Linguagem mãe do projeto
+### Pandas
+Tratamento, Inserção dos dados
+### Plotly
+Criação de gráficos interativos
+### Streamlit
+Criação da interface e componentes para entrada de parametros
+### Mysql-connector
+Biblioteca para interligar o codigo python 
+com uma instancia de conexão com o MariaDB
+
 <details>
-<summary>🛠️Como rodar o projeto (clique pra visualizar)</summary>
+<summary><strong>⚙️Como rodar o projeto (clique pra visualizar)</strong></summary>
 
 ### 1. Baixe e instale o Python
 
