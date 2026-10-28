@@ -10,7 +10,7 @@ Instale o Python compatível com o projeto e marque a opção **Add Python to PA
 
 **Vídeo do procedimento:**
 
-[<!-- Adicione o vídeo aqui -->](https://youtu.be/wwLU-TWkJNM)
+[![Vídeo: baixar e instalar o Python](https://img.shields.io/badge/Assistir%20v%C3%ADdeo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/wwLU-TWkJNM)
 
 ### 2. Baixe e instale o MariaDB
 
@@ -18,7 +18,7 @@ Baixe e instale o MariaDB Server. Durante a instalação, configure a senha do u
 
 **Vídeo do procedimento:**
 
-[<!-- Adicione o vídeo aqui -->](https://youtu.be/myQ3a4l78D4)
+[![Vídeo: baixar e instalar o MariaDB](https://img.shields.io/badge/Assistir%20v%C3%ADdeo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/myQ3a4l78D4)
 
 ### 3. Inicie o serviço do MariaDB
 
@@ -26,7 +26,7 @@ Inicie o serviço do MariaDB pelo aplicativo de serviços do Windows (`services.
 
 **Vídeo do procedimento:**
 
-[<!-- Adicione o vídeo aqui -->](https://youtu.be/pw8RDVaZUqU)
+[![Vídeo: iniciar o serviço do MariaDB](https://img.shields.io/badge/Assistir%20v%C3%ADdeo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/pw8RDVaZUqU)
 
 ### 4. Baixe o projeto
 
@@ -42,7 +42,7 @@ git clone URL_DO_REPOSITORIO
 
 **Vídeo do procedimento:**
 
-[<!-- Adicione o vídeo aqui -->](https://youtu.be/bwRj_0GMwI4)
+[![Vídeo: baixar o projeto](https://img.shields.io/badge/Assistir%20v%C3%ADdeo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/bwRj_0GMwI4)
 
 ### 5. Extraia os arquivos do projeto
 
@@ -52,20 +52,20 @@ Se clonou o repositório com Git, os arquivos já estarão disponíveis na pasta
 
 **Vídeo do procedimento:**
 
-[<!-- Adicione o vídeo aqui -->](https://youtu.be/TMBYn8fcbnc)
+[![Vídeo: extrair os arquivos do projeto](https://img.shields.io/badge/Assistir%20v%C3%ADdeo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/TMBYn8fcbnc)
 
 
 ### 6. Renomeie o arquivo .env
 
 Após extrair o conteúdo do zip abra o diretório e renomeie
-.env.example para => .env.
+`.env.example` para => `.env`.
 
-Depois abra o arquivo com o bloco de notas escreva sua senha na
-variável de DB_PASSWORD e salve o arquivo.
+Depois abra o arquivo com o bloco de notas, escreva sua senha na
+variável `DB_PASSWORD` e salve o arquivo.
 
 **Vídeo do procedimento:**
 
-[<!-- Adicione o vídeo aqui -->](https://youtu.be/nt63cdGBhBY)
+[![Vídeo: renomear o arquivo .env](https://img.shields.io/badge/Assistir%20v%C3%ADdeo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/nt63cdGBhBY)
 
 ### 7. Acesse a raiz do projeto pelo terminal
 
@@ -79,7 +79,7 @@ cd caminho\para\consultas_indices_graficos
 
 **Vídeo do procedimento:**
 
-[<!-- Adicione o vídeo aqui -->](https://youtu.be/xAiCeIn6N3Y)
+[![Vídeo: acessar a raiz do projeto pelo terminal](https://img.shields.io/badge/Assistir%20v%C3%ADdeo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/xAiCeIn6N3Y)
 
 ### 8. Crie o banco de dados e as tabelas (DDL)
 
@@ -93,7 +93,7 @@ Execute o arquivo SQL responsável por criar o banco de dados e as tabelas.
 
 **Vídeo do procedimento:**
 
-[<!-- Adicione o vídeo aqui -->](https://youtu.be/zgxUm1mbsig)
+[![Vídeo: criar o banco de dados e as tabelas](https://img.shields.io/badge/Assistir%20v%C3%ADdeo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/zgxUm1mbsig)
 
 ### 9. Crie o ambiente virtual e execute o projeto
 
@@ -126,4 +126,4 @@ Acesse o endereço local apresentado no terminal para utilizar o dashboard.
 
 **Vídeo do procedimento:**
 
-[<!-- Adicione o vídeo aqui -->](https://youtu.be/9ldyRRECYrE)
+[![Vídeo: criar o ambiente virtual e executar o projeto](https://img.shields.io/badge/Assistir%20v%C3%ADdeo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/9ldyRRECYrE)
