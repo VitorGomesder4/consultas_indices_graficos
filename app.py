@@ -78,14 +78,18 @@ if secao == "Exportações Por Continente":
     filtro_search = {"tipo": tipo, "valor": valor} if tipo != "Sem filtro" and valor else None
 
     if st.session_state.get("usar_query_dinamica", False):
-        x, x_params = gerar_query_dinamica(
-            agrupamento_geografico=agrupamento_geografico, 
-            agrupar_ncm=agrupamento_ncm, 
-            somar_exportacao_val=True, 
-            tipo_bloco="continente", 
-            limite=limite, 
-            offset=offset,
-            filtro_search=filtro_search)
+        try:
+            x, x_params = gerar_query_dinamica(
+                agrupamento_geografico=agrupamento_geografico, 
+                agrupar_ncm=agrupamento_ncm, 
+                somar_exportacao_val=True, 
+                tipo_bloco="continente", 
+                limite=limite, 
+                offset=offset,
+                filtro_search=filtro_search)
+        except ValueError as e:
+            st.error(str(e))
+            st.stop()
 
         x = x.strip()
 
@@ -179,13 +183,17 @@ if secao == "Exportações Por Bloco Econômico":
     filtro_search = {"tipo": tipo, "valor": valor} if tipo != "Sem filtro" and valor else None
 
     if st.session_state.get("usar_query_dinamica", False):
-        y, y_params = gerar_query_dinamica(agrupamento_geografico=agrupamento_geografico, 
-                                           agrupar_ncm=agrupamento_ncm , 
-                                           somar_exportacao_val=True, 
-                                           tipo_bloco="economico", 
-                                           limite=limite, 
-                                           offset=offset,
-                                           filtro_search=filtro_search)
+        try:
+            y, y_params = gerar_query_dinamica(agrupamento_geografico=agrupamento_geografico, 
+                                            agrupar_ncm=agrupamento_ncm , 
+                                            somar_exportacao_val=True, 
+                                            tipo_bloco="economico", 
+                                            limite=limite, 
+                                            offset=offset,
+                                            filtro_search=filtro_search)
+        except ValueError as e:
+            st.error(str(e))
+            st.stop()
 
         y = y.strip()
 
