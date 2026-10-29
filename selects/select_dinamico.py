@@ -87,10 +87,14 @@ def gerar_query_dinamica(agrupamento_geografico=None, agrupar_ncm=False, somar_e
                 parametros.append(valor)
 
         elif filtro_search["tipo"] == "pais":
+            if agrupamento_geografico not in ("pais", "pais_bloco"):
+                raise ValueError("Filtro por país exige agrupamento geográfico")
             sql += "\nWHERE pa.no_pais = ?"
             parametros.append(valor)
 
         else: #pais_bloco
+            if agrupamento_geografico != "pais_bloco":
+                raise ValueError("Filtro por bloco exige agrupamento por bloco")
             sql += "\nWHERE pb.no_bloco = ?"
             parametros.append(valor)
 
