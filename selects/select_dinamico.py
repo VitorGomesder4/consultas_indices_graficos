@@ -4,11 +4,13 @@ BLOCOS_ECONOMICOS = (  # NOVO: blocos que se sobrepõem aos continentes
     "Mercado Comum do Sul - Mercosul",
 )
 
-def gerar_query_dinamica(agrupamento_geografico=None, agrupar_ncm=False, somar_exportacao_val=False, tipo_bloco="continente", limite=20, offset=0):  # NOVO: parâmetro tipo_bloco
+def gerar_query_dinamica(agrupamento_geografico=None, agrupar_ncm=False, somar_exportacao_val=False, tipo_bloco="continente", limite=20, offset=0,
+                         filtro_search=None): 
 
     selects = []
     groups_by = []
     joins = []
+    parametros = [] #lista de parametros a serem incluidos na query
 
 
     if agrupamento_geografico == "pais":
@@ -71,6 +73,27 @@ def gerar_query_dinamica(agrupamento_geografico=None, agrupar_ncm=False, somar_e
         {" ".join(joins)}
     """
 
+    if filtro_search and filtro_search.get("tipo") in ["ncm", "pais", "pais_bloco"]:
+
+        valor = filtro_search["valor"]
+        
+        if filtro_search["tipo"] == "ncm":
+
+            if valor.isdigit():
+                sql += "\nWHERE nu.co_ncm = ?"
+                parametros.append(valor)
+            else:
+                sql += "\nWHERE nu.no_ncm_por = ?"
+                parametros.append(valor)
+
+        elif filtro_search["tipo"] == "pais":
+            sql += "\nWHERE pa.no_pais = ?"
+            parametros.append(valor)
+
+        else: #pais_bloco
+            sql += "\nWHERE pb.no_bloco = ?"
+            parametros.append(valor)
+
     if groups_by and somar_exportacao_val:
         sql += "\nGROUP BY " + ", ".join(groups_by)
 
@@ -90,9 +113,4 @@ def gerar_query_dinamica(agrupamento_geografico=None, agrupar_ncm=False, somar_e
         except (ValueError, TypeError):
             limite = 20
 
-    return sql
-
-x = gerar_query_dinamica("pais_bloco", agrupar_ncm=True, somar_exportacao_val=True, tipo_bloco="continente")
-y = gerar_query_dinamica("pais_bloco", somar_exportacao_val=True, tipo_bloco="economico")
-
-print(x.strip())
+    return sql, tuple(parametros)
