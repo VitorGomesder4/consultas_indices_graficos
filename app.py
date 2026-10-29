@@ -62,17 +62,22 @@ if secao == "Exportações Por Continente":
         offset = (st.session_state.get("pagina", 1) - 1) * limite
 
     if st.session_state.get("usar_query_dinamica", False):
-        x = gerar_query_dinamica(
+        x, x_params = gerar_query_dinamica(
             agrupamento_geografico=agrupamento_geografico, 
             agrupar_ncm=agrupamento_ncm, 
             somar_exportacao_val=True, 
             tipo_bloco="continente", 
             limite=limite, 
-            offset=offset).strip()
+            offset=offset)
+
+        x = x.strip()
+
+        df = executar_reads_query(x, x_params)
+        
     else:
         x = gerar_query_padrao(limite=limite, offset=offset)
 
-    df = executar_reads_query(x)
+        df = executar_reads_query(x)
 
 
     #Container referente a seção da tabela exibida
@@ -160,12 +165,15 @@ if secao == "Exportações Por Bloco Econômico":
 
 
     if st.session_state.get("usar_query_dinamica", False):
-        y = gerar_query_dinamica(agrupamento_geografico=agrupamento_geografico, agrupar_ncm=agrupamento_ncm , somar_exportacao_val=True, tipo_bloco="economico", limite=limite).strip()
+        y, y_params = gerar_query_dinamica(agrupamento_geografico=agrupamento_geografico, agrupar_ncm=agrupamento_ncm , somar_exportacao_val=True, tipo_bloco="economico", limite=limite, offset=offset)
+
+        y = y.strip()
+
+        df2 = executar_reads_query(y, y_params)
+
     else:
         y = gerar_query_padrao(limite=limite, offset=offset)
-
-
-    df2 = executar_reads_query(y)
+        df2 = executar_reads_query(y)
 
 
     #Container referente a seção da tabela exibida
