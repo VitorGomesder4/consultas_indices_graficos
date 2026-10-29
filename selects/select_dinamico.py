@@ -73,7 +73,9 @@ def gerar_query_dinamica(agrupamento_geografico=None, agrupar_ncm=False, somar_e
         {" ".join(joins)}
     """
 
-    if filtro_search and filtro_search.get("tipo") in ["ncm", "pais", "pais_bloco"]:
+    valor = str(filtro_search.get("valor", "")).strip() if filtro_search else ""
+
+    if valor and filtro_search and filtro_search.get("tipo") in ["ncm", "pais", "pais_bloco"]:
 
         valor = filtro_search["valor"]
         
