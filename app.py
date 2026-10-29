@@ -245,3 +245,5 @@ if secao == "Gráficos":
         )
 
     st.plotly_chart(grafico_mapa_mundo, use_container_width=True)
+
+    st.dataframe(df_para_mapa_mundo)
