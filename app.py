@@ -39,6 +39,13 @@ if secao == "Exportações Por Continente":
 
             agrupamento_ncm = st.radio(label="Agrupar NCM's:", options=["Sim", "Não"], index=None)
 
+            tipo_filtro = st.selectbox(
+                label="Filtrar por:",
+                options=["Sem filtro", "ncm", "pais", "pais_bloco"],
+            )
+
+            valor_filtro = st.text_input(label="Valor do filtro (código ou nome):")
+
             aplicar = st.form_submit_button("Aplicar")
 
 
@@ -52,6 +59,9 @@ if secao == "Exportações Por Continente":
 
             st.session_state.usar_query_dinamica = True #atributo que define se visualiza exportacoes individuais padroes ou agrupadas
 
+            st.session_state.tipo_filtro = tipo_filtro
+            st.session_state.valor_filtro = valor_filtro.strip()
+
 
         limite = st.session_state.get("indice_por_pag", 20)
 
@@ -61,6 +71,12 @@ if secao == "Exportações Por Continente":
 
         offset = (st.session_state.get("pagina", 1) - 1) * limite
 
+
+    tipo = st.session_state.get("tipo_filtro", "Sem filtro")
+    valor = st.session_state.get("valor_filtro", "")
+
+    filtro_search = {"tipo": tipo, "valor": valor} if tipo != "Sem filtro" and valor else None
+
     if st.session_state.get("usar_query_dinamica", False):
         x, x_params = gerar_query_dinamica(
             agrupamento_geografico=agrupamento_geografico, 
@@ -68,7 +84,8 @@ if secao == "Exportações Por Continente":
             somar_exportacao_val=True, 
             tipo_bloco="continente", 
             limite=limite, 
-            offset=offset)
+            offset=offset,
+            filtro_search=filtro_search)
 
         x = x.strip()
 
@@ -87,7 +104,7 @@ if secao == "Exportações Por Continente":
         resetar_tabela = st.button(label="Resetar Tabela para padrão")
 
         if resetar_tabela:
-            for i in ("indice_por_pag", "agrupamento_geografico", "agrupamento_ncm", "usar_query_dinamica"):
+            for i in ("indice_por_pag", "agrupamento_geografico", "agrupamento_ncm", "usar_query_dinamica", "tipo_filtro", "valor_filtro"):
                 st.session_state.pop(i, None)
             st.session_state.pagina = 1
             st.rerun()
@@ -133,39 +150,42 @@ if secao == "Exportações Por Bloco Econômico":
     
     with st.expander("Parâmetros de exportações", expanded=False):
         #Formulario de parametros para realizar consulta sem precisar recarregar codigo toda vez
-        with st.form("Parametros_exportações"):
-            indice_por_pag = st.number_input(label="Indices por pagina (max 50)", min_value=1 , max_value=50, value=20)
-        
+        with st.form("form_bloco"):
+            indice_por_pag = st.number_input(label="Indices por pagina (max 50)", min_value=1, max_value=50, value=20)
             agrupamento_geografico = st.radio(label="Agrupamento Geografico:", options=["pais", "pais_bloco"], index=None)
-        
             agrupamento_ncm = st.radio(label="Agrupar NCM's:", options=["Sim", "Não"], index=None)
-        
+            tipo_filtro = st.selectbox(label="Filtrar por:", options=["Sem filtro", "ncm", "pais", "pais_bloco"])
+            valor_filtro = st.text_input(label="Valor do filtro (código ou nome):")
             aplicar = st.form_submit_button("Aplicar")
-        
-        
-            #Guardando os valores como atributos da sessão
-            if aplicar:
-                st.session_state.indice_por_pag = indice_por_pag
-                st.session_state.pagina = 1 #Reseta o valor para 1 se o usuario aplicar
-        
-                st.session_state.agrupamento_geografico = agrupamento_geografico
-        
-                st.session_state.agrupamento_ncm = agrupamento_ncm
-                st.session_state.usar_query_dinamica = True #atributo que define se visualiza exportacoes individuais padroes ou agrupadas
 
-        
-        
-            limite = st.session_state.get("indice_por_pag", 20)
-        
-            agrupamento_geografico = st.session_state.get("agrupamento_geografico", "pais")
-        
-            agrupamento_ncm = (st.session_state.get("agrupamento_ncm", "Não") == "Sim")
-        
-            offset = (st.session_state.get("pagina", 1) - 1) * limite
+        if aplicar:
+            st.session_state.indice_por_pag = indice_por_pag
+            st.session_state.pagina = 1
+            st.session_state.agrupamento_geografico = agrupamento_geografico
+            st.session_state.agrupamento_ncm = agrupamento_ncm
+            st.session_state.usar_query_dinamica = True
+            st.session_state.tipo_filtro = tipo_filtro
+            st.session_state.valor_filtro = valor_filtro.strip()
 
+        limite = st.session_state.get("indice_por_pag", 20)
+        agrupamento_geografico = st.session_state.get("agrupamento_geografico", "pais")
+        agrupamento_ncm = (st.session_state.get("agrupamento_ncm", "Não") == "Sim")
+        offset = (st.session_state.get("pagina", 1) - 1) * limite
+
+
+    tipo = st.session_state.get("tipo_filtro", "Sem filtro")
+    valor = st.session_state.get("valor_filtro", "")
+
+    filtro_search = {"tipo": tipo, "valor": valor} if tipo != "Sem filtro" and valor else None
 
     if st.session_state.get("usar_query_dinamica", False):
-        y, y_params = gerar_query_dinamica(agrupamento_geografico=agrupamento_geografico, agrupar_ncm=agrupamento_ncm , somar_exportacao_val=True, tipo_bloco="economico", limite=limite, offset=offset)
+        y, y_params = gerar_query_dinamica(agrupamento_geografico=agrupamento_geografico, 
+                                           agrupar_ncm=agrupamento_ncm , 
+                                           somar_exportacao_val=True, 
+                                           tipo_bloco="economico", 
+                                           limite=limite, 
+                                           offset=offset,
+                                           filtro_search=filtro_search)
 
         y = y.strip()
 
@@ -183,7 +203,7 @@ if secao == "Exportações Por Bloco Econômico":
         resetar_tabela = st.button(label="Resetar Tabela para padrão")
         
         if resetar_tabela:
-            for i in ("indice_por_pag", "agrupamento_geografico", "agrupamento_ncm", "usar_query_dinamica"):
+            for i in ("indice_por_pag", "agrupamento_geografico", "agrupamento_ncm", "usar_query_dinamica", "tipo_filtro", "valor_filtro"):
                 st.session_state.pop(i, None)
             st.session_state.pagina = 1
             st.rerun()
