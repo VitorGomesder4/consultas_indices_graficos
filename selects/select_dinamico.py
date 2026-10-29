@@ -104,13 +104,16 @@ def gerar_query_dinamica(agrupamento_geografico=None, agrupar_ncm=False, somar_e
     if limite:
         try:
             limite = int(limite)
-
             if limite < 1:
                 raise ValueError
-
-            sql += f"\nLIMIT {limite} OFFSET {offset}"
-
         except (ValueError, TypeError):
             limite = 20
+
+        try:
+            offset = max(int(offset), 0)
+        except (ValueError, TypeError):
+            offset = 0
+
+        sql += f"\nLIMIT {limite} OFFSET {offset}"
 
     return sql, tuple(parametros)
