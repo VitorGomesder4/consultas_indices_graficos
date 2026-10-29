@@ -93,3 +93,15 @@ voce so precisara entrar no diretorio do projeto rodando:
 <h2> 6. Entendimento do formato do xlsx<h2>
 <h4>Usei a IA para entender o formato do xlsx arquivo excel pois ao tentar tratar e inserir os dados vinham coisas inesperadas na base foi ai que aprendi o conceito de que a tabela possui varios indices de tipos de dados.</h4>
 </details>
+
+<details>
+<summary><strong>Fontes Usadas:</strong></summary>
+
+<h2>https://docs.plotly.com/</h2>
+<h2>https://docs.streamlit.io/</h2>
+<h2>https://pandas.pydata.org/docs/</h2>
+<h2>https://claude.com/</h2>
+<h2>https://www.idtools.com.au/interactive-choropleth-maps-with-plotly-for-python/</h2>
+<h2>http://gov.br/inpi</h2>
+<h2>http://comexstat.mdic.gov.br/</h2>
+</details>
